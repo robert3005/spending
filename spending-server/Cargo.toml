@@ -1,0 +1,10 @@
+[package]
+name = "spending"
+version = "0.0.0"
+description = "show me my spending patterns"
+authors = ["Robert Kruszewski <robert@robert.sx>"]
+license = "Apache-2.0"
+
+[dependencies]
+tokio = { version = "1.5.0", features = ["full"] }
+warp = "0.3.1"
