@@ -9,4 +9,5 @@ edition = "2018"
 [dependencies]
 tokio = { version = "1.5.0", features = ["full"] }
 warp = "0.3.1"
-oauth2 = { version = "3.0", features = ["futures-03", "reqwest-010"], default-features = false }
+oauth2 = "4.0.0"
+http = "0.2.4"

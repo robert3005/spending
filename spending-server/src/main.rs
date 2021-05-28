@@ -1,10 +1,19 @@
+#![feature(async_closure)]
+
 use warp::Filter;
+
+mod resource;
 
 #[tokio::main]
 async fn main() {
     // GET /hello/warp => 200 OK with body "Hello, warp!"
-    let hello = warp::path!("hello" / String)
-        .map(|name| format!("Hello, {}!", name));
+    let hello = warp::path("hello")
+        .and(warp::path::param())
+        .map(|name: String| format!("Hello, {}!", name));
+
+    let oauth2 = resource::oauth::Oauth2Resource {
+        config: resource::oauth::Oauth2Config::new("", "", "", "")
+    };
 
     warp::serve(hello)
         .run(([127, 0, 0, 1], 3030))
