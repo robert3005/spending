@@ -12,10 +12,8 @@ async fn main() {
         .map(|name: String| format!("Hello, {}!", name));
 
     let oauth2 = resource::oauth::Oauth2Resource {
-        config: resource::oauth::Oauth2Config::new("", "", "", "")
+        config: resource::oauth::Oauth2Config::new("", "", "", ""),
     };
 
-    warp::serve(hello)
-        .run(([127, 0, 0, 1], 3030))
-        .await;
+    warp::serve(hello).run(([127, 0, 0, 1], 3030)).await;
 }
