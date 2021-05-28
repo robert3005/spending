@@ -11,9 +11,10 @@ async fn main() {
         .and(warp::path::param())
         .map(|name: String| format!("Hello, {}!", name));
 
-    let oauth2 = resource::oauth::Oauth2Resource {
-        config: resource::oauth::Oauth2Config::new("", "", "", ""),
-    };
+    let oauth2 =
+        resource::oauth::Oauth2Resource::new(resource::oauth::Oauth2Config::new("", "", "", ""));
 
-    warp::serve(hello).run(([127, 0, 0, 1], 3030)).await;
+    warp::serve(hello.or(oauth2.build_routes()))
+        .run(([127, 0, 0, 1], 3030))
+        .await;
 }

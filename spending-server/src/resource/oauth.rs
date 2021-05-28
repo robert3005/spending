@@ -60,9 +60,9 @@ impl<'a> Oauth2Resource<'a> {
         };
     }
 
-    fn build_routes(&'a self) -> BoxedFilter<(impl Reply,)> {
+    pub fn build_routes(&'static self) -> BoxedFilter<(impl Reply,)> {
         let login_filter = warp::path("oauth2/login")
-            .map(|| {
+            .map(move || {
                 let (pkce_challenge, pkce_verifier) = PkceCodeChallenge::new_random_sha256();
 
                 // Generate the full authorization URL.
@@ -88,7 +88,7 @@ impl<'a> Oauth2Resource<'a> {
             .boxed();
 
         let redirect = warp::path("oauth2/redirect")
-            .and_then(async || {
+            .and_then(async move || {
                 // Once the user has been redirected to the redirect URL, you'll have access to the
                 // authorization code. For security reasons, your code should verify that the `state`
                 // parameter returned by the server matches `csrf_state`.
