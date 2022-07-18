@@ -178,3 +178,4 @@ impl Oauth2Resource {
         return login_filter.or(redirect).boxed();
     }
 }
+
