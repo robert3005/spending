@@ -4,11 +4,11 @@ version = "0.0.0"
 description = "show me my spending patterns"
 authors = ["Robert Kruszewski <robert@robert.sx>"]
 license = "Apache-2.0"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
-tokio = { version = "1.14.0", features = ["full"] }
+tokio = { version = "1.20.0", features = ["full"] }
 warp = "0.3.2"
 oauth2 = "4.1.0"
-http = "0.2.5"
-serde = "1.0.130"
+http = "0.2.8"
+serde = "1.0.139"
